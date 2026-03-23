@@ -11,42 +11,35 @@
   --navy-light: #2c5282;
   --gold: #c9a84c;
   --gold-light: #e8c96a;
-  --white: #ffffff;
   --off-white: #f8f6f2;
+  --cream: #fdf9f3;
   --gray: #6b7280;
   --light-gray: #e5e7eb;
   --dark: #1a1a2e;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
+body { font-family: 'Noto Sans KR', sans-serif; color: var(--dark); background: var(--cream); }
 
-body {
-  font-family: 'Noto Sans KR', sans-serif;
-  color: var(--dark);
-  background: var(--off-white);
-}
-
-/* ===== NAVIGATION ===== */
+/* ===== NAV ===== */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
-  background: rgba(26, 58, 92, 0.95);
+  background: rgba(26,58,92,0.97);
   backdrop-filter: blur(10px);
   padding: 0 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 64px;
-  transition: all 0.3s ease;
 }
 
 .nav-logo {
   font-family: 'Noto Serif KR', serif;
   color: var(--gold-light);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 600;
   letter-spacing: 2px;
   text-decoration: none;
@@ -62,45 +55,36 @@ nav {
   color: rgba(255,255,255,0.85);
   text-decoration: none;
   font-size: 0.82rem;
-  padding: 0.5rem 0.7rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 4px;
   transition: all 0.2s;
   letter-spacing: 0.5px;
-  font-weight: 400;
 }
 
-.nav-menu a:hover {
-  color: var(--gold-light);
-  background: rgba(255,255,255,0.1);
-}
+.nav-menu a:hover { color: var(--gold-light); background: rgba(255,255,255,0.1); }
+.nav-menu a.cafe-btn { background: #03c75a; color: white !important; border-radius: 20px; }
+.nav-menu a.cafe-btn:hover { background: #02a84a; }
 
 .hamburger {
   display: none;
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
-  padding: 4px;
 }
-
-.hamburger span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: white;
-  transition: all 0.3s;
-}
+.hamburger span { display: block; width: 24px; height: 2px; background: white; transition: all 0.3s; }
 
 /* ===== HERO SLIDER ===== */
 .hero {
   position: relative;
   height: 100vh;
   overflow: hidden;
+  padding-top: 64px;
 }
 
 .slides {
   display: flex;
   height: 100%;
-  transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: transform 0.8s cubic-bezier(0.77,0,0.175,1);
 }
 
 .slide {
@@ -115,21 +99,16 @@ nav {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.3) 0%,
-    rgba(0,0,0,0.1) 40%,
-    rgba(26,58,92,0.6) 100%
-  );
+  background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(26,58,92,0.65) 100%);
 }
 
-.slide-1 { background-color: #1a3a5c; background-image: url('slide1.jpg'); }
-.slide-2 { background-color: #2c3e50; background-image: url('slide2.jpg'); }
-.slide-3 { background-color: #1a2a1a; background-image: url('slide3.png'); }
+.slide-1 { background-image: url('slide1.jpg'); background-color: #1a3a5c; }
+.slide-2 { background-image: url('slide2.jpg'); background-color: #2c3e50; }
+.slide-3 { background-image: url('slide3.png'); background-color: #1a2a1a; }
 
 .hero-content {
   position: absolute;
-  bottom: 12%;
+  bottom: 14%;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -144,505 +123,209 @@ nav {
   to { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
-.hero-subtitle {
-  font-size: 0.85rem;
-  color: var(--gold-light);
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-  font-weight: 300;
-}
+.hero-subtitle { font-size: 0.82rem; color: var(--gold-light); letter-spacing: 6px; margin-bottom: 1rem; }
+.hero-title { font-family: 'Noto Serif KR', serif; font-size: clamp(2rem,5vw,3.5rem); color: white; font-weight: 700; letter-spacing: 4px; text-shadow: 0 2px 20px rgba(0,0,0,0.5); margin-bottom: 0.8rem; }
+.hero-verse { font-size: 0.9rem; color: rgba(255,255,255,0.8); font-style: italic; font-family: 'Noto Serif KR', serif; }
 
-.hero-title {
-  font-family: 'Noto Serif KR', serif;
-  font-size: clamp(2.2rem, 6vw, 4rem);
-  color: white;
-  font-weight: 700;
-  letter-spacing: 4px;
-  line-height: 1.2;
-  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
-  margin-bottom: 0.8rem;
-}
+.slider-dots { position: absolute; bottom: 6%; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); cursor: pointer; transition: all 0.3s; border: none; }
+.dot.active { background: var(--gold-light); transform: scale(1.3); }
 
-.hero-verse {
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.8);
-  font-style: italic;
-  letter-spacing: 1px;
-  font-family: 'Noto Serif KR', serif;
-}
-
-.slider-dots {
-  position: absolute;
-  bottom: 6%;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
-  z-index: 10;
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.4);
-  cursor: pointer;
-  transition: all 0.3s;
-  border: none;
-}
-
-.dot.active {
-  background: var(--gold-light);
-  transform: scale(1.3);
-}
-
-.slider-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  background: rgba(255,255,255,0.15);
-  border: 1px solid rgba(255,255,255,0.3);
-  color: white;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 1.2rem;
-  transition: all 0.3s;
-  backdrop-filter: blur(4px);
-}
-
+.slider-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; transition: all 0.3s; }
 .slider-btn:hover { background: rgba(255,255,255,0.3); }
 .slider-btn.prev { left: 2rem; }
 .slider-btn.next { right: 2rem; }
 
-/* ===== 2026 가정의 해 배너 ===== */
-.banner-section {
+/* ===== 가정의 해 배너 ===== */
+.banner {
   background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
-  padding: 3rem 2rem;
+  padding: 3.5rem 2rem;
   text-align: center;
   position: relative;
   overflow: hidden;
 }
+.banner::before { content: '✝'; position: absolute; font-size: 15rem; color: rgba(255,255,255,0.03); top: -3rem; right: -2rem; font-family: serif; }
+.banner-tag { display: inline-block; background: var(--gold); color: var(--navy); font-size: 0.72rem; font-weight: 700; letter-spacing: 3px; padding: 0.3rem 1rem; border-radius: 20px; margin-bottom: 1rem; }
+.banner-title { font-family: 'Noto Serif KR', serif; font-size: clamp(1.5rem,3.5vw,2.2rem); color: white; font-weight: 700; margin-bottom: 0.6rem; letter-spacing: 2px; }
+.banner-sub { color: var(--gold-light); font-size: 0.95rem; margin-bottom: 1.8rem; }
+.banner-items { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+.banner-item { background: rgba(255,255,255,0.1); border: 1px solid rgba(201,168,76,0.4); border-radius: 12px; padding: 1.2rem 2rem; color: white; min-width: 180px; }
+.banner-item-num { font-size: 1.8rem; font-weight: 700; color: var(--gold-light); font-family: 'Noto Serif KR', serif; }
+.banner-item-text { font-size: 0.95rem; margin-top: 0.3rem; }
+.banner-item-desc { font-size: 0.78rem; color: rgba(255,255,255,0.6); margin-top: 0.2rem; }
 
-.banner-section::before {
-  content: '✝';
-  position: absolute;
-  font-size: 15rem;
-  color: rgba(255,255,255,0.03);
-  top: -3rem;
-  right: -2rem;
-  font-family: serif;
-}
+/* ===== 공통 섹션 ===== */
+.section { padding: 5rem 2rem; }
+.section-alt { background: white; }
+.inner { max-width: 1060px; margin: 0 auto; }
 
-.banner-tag {
-  display: inline-block;
-  background: var(--gold);
-  color: var(--navy);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 3px;
-  padding: 0.3rem 1rem;
-  border-radius: 20px;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-}
+.section-header { text-align: center; margin-bottom: 3.5rem; }
+.section-tag { display: inline-block; color: var(--gold); font-size: 0.72rem; font-weight: 700; letter-spacing: 4px; border-bottom: 2px solid var(--gold); padding-bottom: 0.3rem; margin-bottom: 0.8rem; }
+.section-title { font-family: 'Noto Serif KR', serif; font-size: clamp(1.5rem,3vw,2rem); color: var(--navy); font-weight: 700; letter-spacing: 2px; }
 
-.banner-title {
-  font-family: 'Noto Serif KR', serif;
-  font-size: clamp(1.5rem, 4vw, 2.2rem);
-  color: white;
-  font-weight: 600;
-  margin-bottom: 0.8rem;
-  letter-spacing: 2px;
-}
+/* ===== 미사 안내 ===== */
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
 
-.banner-subtitle {
-  color: var(--gold-light);
-  font-size: 1rem;
-  letter-spacing: 1px;
-  margin-bottom: 1.5rem;
-}
+.info-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.07); transition: transform 0.3s, box-shadow 0.3s; }
+.info-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.12); }
 
-.banner-items {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.banner-item {
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(201,168,76,0.4);
-  border-radius: 12px;
-  padding: 1.2rem 2rem;
-  color: white;
-  min-width: 200px;
-}
-
-.banner-item-num {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--gold-light);
-  font-family: 'Noto Serif KR', serif;
-}
-
-.banner-item-text {
-  font-size: 0.95rem;
-  margin-top: 0.3rem;
-  color: rgba(255,255,255,0.9);
-}
-
-.banner-item-desc {
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.6);
-  margin-top: 0.3rem;
-}
-
-/* ===== INFO SECTION ===== */
-.info-section {
-  padding: 5rem 2rem;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.section-header {
-  text-align: center;
-  margin-bottom: 3.5rem;
-}
-
-.section-tag {
-  display: inline-block;
-  color: var(--gold);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  margin-bottom: 0.8rem;
-  border-bottom: 2px solid var(--gold);
-  padding-bottom: 0.3rem;
-}
-
-.section-title {
-  font-family: 'Noto Serif KR', serif;
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  color: var(--navy);
-  font-weight: 700;
-  letter-spacing: 2px;
-}
-
-.info-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-}
-
-.info-card {
-  background: white;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.info-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 36px rgba(0,0,0,0.12);
-}
-
-.card-header {
-  background: var(--navy);
-  padding: 1rem 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.card-header-icon { font-size: 1.3rem; }
-
-.card-header-title {
-  font-family: 'Noto Serif KR', serif;
-  color: white;
-  font-size: 1.05rem;
-  font-weight: 600;
-  letter-spacing: 2px;
-}
-
+.card-head { background: var(--navy); padding: 1rem 1.5rem; display: flex; align-items: center; gap: 0.8rem; }
+.card-head-icon { font-size: 1.3rem; }
+.card-head-title { font-family: 'Noto Serif KR', serif; color: white; font-size: 1rem; font-weight: 600; letter-spacing: 2px; }
 .card-body { padding: 1.5rem; }
 
-table.schedule {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9rem;
-}
+table.sch { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+table.sch td { padding: 0.65rem 0.8rem; border-bottom: 1px solid var(--light-gray); vertical-align: top; }
+table.sch tr:last-child td { border-bottom: none; }
+table.sch .day { font-weight: 700; color: var(--navy); width: 80px; }
+table.sch .time { color: var(--gray); }
+table.sch .highlight { color: var(--navy-light); font-weight: 600; }
+.badge { display: inline-block; background: var(--off-white); color: var(--navy); font-size: 0.7rem; padding: 0.12rem 0.45rem; border-radius: 8px; margin-left: 0.3rem; }
+.holiday { color: #dc2626; font-weight: 700; }
 
-table.schedule td {
-  padding: 0.65rem 0.8rem;
-  border-bottom: 1px solid var(--light-gray);
-}
+/* ===== 등록 안내 ===== */
+.reg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 
-table.schedule tr:last-child td { border-bottom: none; }
+.reg-card { border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; }
+.reg-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.14); }
 
-table.schedule .day-label {
-  font-weight: 700;
-  color: var(--navy);
-  width: 80px;
-  vertical-align: top;
-}
+.reg-card-top { padding: 2.5rem 1.8rem 2rem; text-align: center; }
+.reg-card-top.cat { background: linear-gradient(135deg, #1a3a5c, #2c5282); }
+.reg-card-top.tra { background: linear-gradient(135deg, #2d4a1e, #3d6428); }
+.reg-card-top.lap { background: linear-gradient(135deg, #5c3a1a, #8b5e2e); }
 
-table.schedule .time-label {
-  color: var(--gray);
-}
+.reg-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
+.reg-card-top h3 { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; color: white; font-weight: 700; letter-spacing: 2px; margin-bottom: 0.5rem; }
+.reg-card-top p { font-size: 0.82rem; color: rgba(255,255,255,0.75); line-height: 1.6; }
+.reg-card-bottom { background: white; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+.reg-card-bottom span { font-size: 0.85rem; font-weight: 600; color: var(--navy); }
+.reg-arrow { font-size: 1.1rem; color: var(--gold); }
 
-table.schedule .time-highlight {
-  color: var(--navy-light);
-  font-weight: 600;
-}
+/* 등록 상세 */
+.reg-detail { display: none; animation: fadeIn 0.4s ease; }
+.reg-detail.active { display: block; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
 
-.badge {
-  display: inline-block;
-  background: var(--off-white);
-  color: var(--navy);
-  font-size: 0.72rem;
-  padding: 0.15rem 0.5rem;
-  border-radius: 10px;
-  margin-left: 0.4rem;
-  font-weight: 500;
-}
+.back-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--off-white); border: 1px solid var(--light-gray); color: var(--navy); padding: 0.6rem 1.2rem; border-radius: 8px; font-size: 0.85rem; cursor: pointer; margin-bottom: 2rem; transition: all 0.2s; font-family: 'Noto Sans KR', sans-serif; font-weight: 500; }
+.back-btn:hover { background: var(--navy); color: white; border-color: var(--navy); }
 
-.holiday-text { color: #dc2626; font-weight: 700; }
+.warm-box { border-radius: 20px; padding: 3rem 2.5rem; margin-bottom: 2rem; position: relative; overflow: hidden; }
+.warm-box.cat { background: linear-gradient(135deg, var(--navy), var(--navy-light)); }
+.warm-box.tra { background: linear-gradient(135deg, #1e3a1a, #2d5a28); }
+.warm-box.lap { background: linear-gradient(135deg, #3d2008, #7c4a1e); text-align: center; }
 
-/* ===== CONTACT SECTION ===== */
-.contact-section {
-  background: var(--navy);
-  padding: 4rem 2rem;
-  color: white;
-}
+.warm-box h2 { font-family: 'Noto Serif KR', serif; font-size: 1.5rem; margin-bottom: 1.2rem; letter-spacing: 2px; }
+.warm-box.cat h2 { color: var(--gold-light); }
+.warm-box.tra h2 { color: #a8e6a0; }
+.warm-box.lap h2 { color: var(--gold-light); }
+.warm-box p { color: rgba(255,255,255,0.88); line-height: 2; font-size: 0.95rem; }
 
-.contact-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: center;
-}
+.lap-verse { font-family: 'Noto Serif KR', serif; font-size: 1.05rem; color: rgba(255,255,255,0.9); font-style: italic; line-height: 2; margin: 1.2rem 0; padding: 1rem; border-top: 1px solid rgba(201,168,76,0.3); border-bottom: 1px solid rgba(201,168,76,0.3); }
 
-.contact-info h2 {
-  font-family: 'Noto Serif KR', serif;
-  font-size: 1.8rem;
-  color: var(--gold-light);
-  margin-bottom: 1.5rem;
-  letter-spacing: 2px;
-}
+.priest-card { background: white; border-radius: 16px; padding: 1.8rem 2rem; border-left: 5px solid var(--gold); margin-bottom: 2rem; display: flex; gap: 1.5rem; align-items: flex-start; }
+.priest-avatar { width: 60px; height: 60px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0; }
+.priest-info h3 { font-family: 'Noto Serif KR', serif; font-size: 1rem; color: var(--navy); font-weight: 700; margin-bottom: 0.4rem; }
+.priest-info p { font-size: 0.88rem; color: var(--gray); line-height: 1.9; }
 
-.contact-item {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  align-items: flex-start;
-}
+.msg-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; margin-bottom: 2rem; }
+.msg-card { background: white; border-radius: 16px; padding: 1.8rem; text-align: center; border-top: 4px solid var(--gold); }
+.msg-icon { font-size: 2rem; margin-bottom: 0.8rem; display: block; }
+.msg-card h3 { font-family: 'Noto Serif KR', serif; font-size: 0.95rem; color: var(--navy); font-weight: 700; margin-bottom: 0.5rem; }
+.msg-card p { font-size: 0.82rem; color: var(--gray); line-height: 1.8; }
 
-.contact-icon {
-  font-size: 1.1rem;
-  margin-top: 0.1rem;
-  min-width: 24px;
-}
+.steps-box { background: white; border-radius: 16px; padding: 2rem; margin-bottom: 2rem; }
+.steps-box h3 { font-family: 'Noto Serif KR', serif; font-size: 1rem; color: var(--navy); font-weight: 700; margin-bottom: 1.5rem; }
+.step-row { display: flex; gap: 1rem; align-items: flex-start; padding-bottom: 1rem; margin-bottom: 1rem; border-bottom: 1px solid var(--light-gray); }
+.step-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.step-badge { width: 30px; height: 30px; border-radius: 50%; background: var(--navy); color: white; font-size: 0.78rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.step-row h4 { font-size: 0.92rem; font-weight: 700; color: var(--navy); margin-bottom: 0.2rem; }
+.step-row p { font-size: 0.83rem; color: var(--gray); line-height: 1.7; }
 
-.contact-text { font-size: 0.95rem; color: rgba(255,255,255,0.85); line-height: 1.7; }
-.contact-text strong { color: white; display: block; font-size: 0.8rem; letter-spacing: 1px; color: var(--gold-light); margin-bottom: 0.2rem; }
+.contact-row { background: var(--navy); border-radius: 16px; padding: 1.8rem 2rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; text-align: center; margin-bottom: 2rem; }
+.ci-label { font-size: 0.7rem; color: var(--gold-light); letter-spacing: 2px; margin-bottom: 0.4rem; }
+.ci-value { color: white; font-size: 0.88rem; line-height: 1.6; font-weight: 500; }
 
-.map-container {
-  border-radius: 12px;
-  overflow: hidden;
-  height: 260px;
-  border: 2px solid rgba(201,168,76,0.3);
-}
+/* ===== 본당 안내 ===== */
+.parish-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.parish-card { background: var(--off-white); border-radius: 16px; padding: 2rem 1.5rem; text-align: center; cursor: pointer; transition: all 0.3s; border: 2px solid transparent; text-decoration: none; color: inherit; display: block; }
+.parish-card:hover { border-color: var(--gold); background: white; transform: translateY(-4px); box-shadow: 0 8px 24px rgba(26,58,92,0.12); }
+.parish-icon { font-size: 2.2rem; margin-bottom: 1rem; display: block; }
+.parish-name { font-family: 'Noto Serif KR', serif; font-size: 1rem; font-weight: 600; color: var(--navy); letter-spacing: 1px; margin-bottom: 0.3rem; }
+.parish-desc { font-size: 0.78rem; color: var(--gray); line-height: 1.6; }
 
-.map-container iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
+/* ===== 오시는 길 ===== */
+.contact-section { background: var(--navy); padding: 5rem 2rem; }
+.contact-inner { max-width: 1060px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+.contact-info h2 { font-family: 'Noto Serif KR', serif; font-size: 1.8rem; color: var(--gold-light); margin-bottom: 1.5rem; letter-spacing: 2px; }
+.ci { display: flex; gap: 1rem; margin-bottom: 1rem; align-items: flex-start; }
+.ci-icon { font-size: 1.1rem; min-width: 24px; }
+.ci-text { font-size: 0.92rem; color: rgba(255,255,255,0.85); line-height: 1.7; }
+.ci-text strong { color: var(--gold-light); display: block; font-size: 0.75rem; letter-spacing: 1px; margin-bottom: 0.2rem; }
+.map-wrap { border-radius: 12px; overflow: hidden; height: 260px; border: 2px solid rgba(201,168,76,0.3); }
+.map-wrap iframe { width: 100%; height: 100%; border: none; }
 
-/* ===== MENU GRID ===== */
-.menu-section {
-  padding: 5rem 2rem;
-  background: white;
-}
-
-.menu-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.menu-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-top: 3rem;
-}
-
-.menu-card {
-  background: var(--off-white);
-  border-radius: 16px;
-  padding: 2rem 1.5rem;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-
-.menu-card:hover {
-  border-color: var(--gold);
-  background: white;
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(26,58,92,0.12);
-}
-
-.menu-icon {
-  font-size: 2.2rem;
-  margin-bottom: 1rem;
-  display: block;
-}
-
-.menu-name {
-  font-family: 'Noto Serif KR', serif;
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--navy);
-  letter-spacing: 1px;
-  margin-bottom: 0.4rem;
-}
-
-.menu-desc {
-  font-size: 0.8rem;
-  color: var(--gray);
-  line-height: 1.6;
-}
-
-/* ===== CAFE BUTTON ===== */
-.cafe-section {
-  background: var(--off-white);
-  padding: 4rem 2rem;
-  text-align: center;
-}
-
-.cafe-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.8rem;
-  background: #03c75a;
-  color: white;
-  text-decoration: none;
-  padding: 1rem 2.5rem;
-  border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  transition: all 0.3s;
-  box-shadow: 0 4px 20px rgba(3,199,90,0.3);
-}
-
-.cafe-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(3,199,90,0.4);
-}
+/* ===== 카페 섹션 ===== */
+.cafe-section { padding: 4rem 2rem; text-align: center; background: var(--off-white); }
+.cafe-btn-link { display: inline-flex; align-items: center; gap: 0.8rem; background: #03c75a; color: white; text-decoration: none; padding: 1rem 2.5rem; border-radius: 50px; font-size: 1rem; font-weight: 700; letter-spacing: 1px; transition: all 0.3s; box-shadow: 0 4px 20px rgba(3,199,90,0.3); }
+.cafe-btn-link:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(3,199,90,0.4); }
 
 /* ===== FOOTER ===== */
-footer {
-  background: #0f1f35;
-  color: rgba(255,255,255,0.6);
-  padding: 2.5rem 2rem;
-  text-align: center;
-  font-size: 0.82rem;
-  line-height: 1.8;
-}
-
+footer { background: #0f1f35; color: rgba(255,255,255,0.6); padding: 2.5rem 2rem; text-align: center; font-size: 0.82rem; line-height: 1.8; }
 footer strong { color: var(--gold-light); }
 
-/* ===== MOBILE ===== */
-@media (max-width: 768px) {
-  .nav-menu {
-    display: none;
-    position: absolute;
-    top: 64px;
-    left: 0; right: 0;
-    background: rgba(26,58,92,0.98);
-    flex-direction: column;
-    padding: 1rem;
-    gap: 0;
-  }
+/* ===== 애니메이션 ===== */
+.fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
 
+/* ===== 모바일 ===== */
+@media (max-width: 768px) {
+  .nav-menu { display: none; position: absolute; top: 64px; left: 0; right: 0; background: rgba(26,58,92,0.98); flex-direction: column; padding: 1rem; gap: 0; }
   .nav-menu.open { display: flex; }
   .nav-menu a { padding: 0.8rem 1rem; font-size: 0.9rem; }
   .hamburger { display: flex; }
-
   .info-grid { grid-template-columns: 1fr; }
+  .reg-grid { grid-template-columns: 1fr; }
+  .parish-grid { grid-template-columns: repeat(2, 1fr); }
   .contact-inner { grid-template-columns: 1fr; }
-  .menu-grid { grid-template-columns: repeat(2, 1fr); }
-
+  .contact-row { grid-template-columns: 1fr; gap: 1rem; }
+  .msg-grid { grid-template-columns: 1fr; }
   .slider-btn { display: none; }
-  .hero-title { font-size: 2rem; }
   .banner-items { flex-direction: column; align-items: center; }
-}
-
-@media (max-width: 480px) {
-  .menu-grid { grid-template-columns: 1fr 1fr; }
-}
-
-/* ===== SCROLL ANIMATIONS ===== */
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 </style>
 </head>
 <body>
 
-<!-- NAVIGATION -->
+<!-- NAV -->
 <nav id="navbar">
-  <a href="#" class="nav-logo">✝ 무실동 성당</a>
+  <a href="#home" class="nav-logo">✝ 무실동 성당</a>
   <ul class="nav-menu" id="navMenu">
     <li><a href="#home">홈</a></li>
-    <li><a href="#info">미사 안내</a></li>
-    <li><a href="#menu">본당 안내</a></li>
+    <li><a href="#misa">미사 안내</a></li>
+    <li><a href="#register">등록 안내</a></li>
+    <li><a href="#parish">본당 안내</a></li>
     <li><a href="#contact">오시는 길</a></li>
-    <li><a href="https://cafe.daum.net/mp.ms" target="_blank">카페 바로가기</a></li>
+    <li><a href="https://cafe.daum.net/mp.ms" target="_blank" class="cafe-btn">카페 바로가기</a></li>
   </ul>
   <div class="hamburger" id="hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </div>
 </nav>
 
-<!-- HERO SLIDER -->
+<!-- HERO -->
 <section class="hero" id="home">
   <div class="slides" id="slides">
     <div class="slide slide-1"></div>
     <div class="slide slide-2"></div>
     <div class="slide slide-3"></div>
   </div>
-
   <button class="slider-btn prev" onclick="changeSlide(-1)">&#8249;</button>
   <button class="slider-btn next" onclick="changeSlide(1)">&#8250;</button>
-
   <div class="hero-content">
     <p class="hero-subtitle">Since 2014 · 원주교구</p>
     <h1 class="hero-title">천주교 무실동 성당</h1>
     <p class="hero-verse">"진리가 너희를 자유롭게 할 것이다." (요한 8,32)</p>
   </div>
-
   <div class="slider-dots" id="dots">
     <button class="dot active" onclick="goSlide(0)"></button>
     <button class="dot" onclick="goSlide(1)"></button>
@@ -650,11 +333,11 @@ footer strong { color: var(--gold-light); }
   </div>
 </section>
 
-<!-- 2026 가정의 해 배너 -->
-<section class="banner-section">
+<!-- 가정의 해 배너 -->
+<section class="banner">
   <div class="banner-tag">2026 사목지침</div>
   <h2 class="banner-title">가정의 해</h2>
-  <p class="banner-subtitle">하느님 사랑으로 일치를 이루는 가정 공동체</p>
+  <p class="banner-sub">하느님 사랑으로 일치를 이루는 가정 공동체</p>
   <div class="banner-items">
     <div class="banner-item">
       <div class="banner-item-num">1</div>
@@ -669,197 +352,264 @@ footer strong { color: var(--gold-light); }
   </div>
 </section>
 
-<!-- INFO SECTION -->
-<section class="info-section" id="info">
-  <div class="section-header fade-in">
-    <div class="section-tag">Mass & Office</div>
-    <h2 class="section-title">미사 시간 및 사무 안내</h2>
-  </div>
-
-  <div class="info-grid">
-    <div class="info-card fade-in">
-      <div class="card-header">
-        <span class="card-header-icon">⛪</span>
-        <span class="card-header-title">미사 시간 안내</span>
-      </div>
-      <div class="card-body">
-        <table class="schedule">
-          <tr>
-            <td class="day-label">월요일</td>
-            <td class="time-label">오전 6시</td>
-          </tr>
-          <tr>
-            <td class="day-label">화, 목</td>
-            <td class="time-label">오후 7시 30분</td>
-          </tr>
-          <tr>
-            <td class="day-label">수, 금</td>
-            <td class="time-label">오전 10시</td>
-          </tr>
-          <tr>
-            <td class="day-label">토요일</td>
-            <td class="time-label">오후 5시 30분 <span class="badge">가정</span></td>
-          </tr>
-          <tr>
-            <td class="day-label">주일</td>
-            <td>
-              <div class="time-label">오전 8시 30분</div>
-              <div class="time-highlight" style="margin-top:4px;">오전 10시 30분 <span class="badge">교중</span></div>
-              <div class="time-label" style="margin-top:4px;">오후 7시 30분 <span class="badge">청년</span></div>
-            </td>
-          </tr>
-          <tr style="background:#f8f6f2;">
-            <td class="day-label" style="color:#c9a84c;">고해성사</td>
-            <td class="time-label">미사 30분 전</td>
-          </tr>
-        </table>
-      </div>
+<!-- 미사 안내 -->
+<section class="section" id="misa">
+  <div class="inner">
+    <div class="section-header fade-in">
+      <div class="section-tag">MASS & OFFICE</div>
+      <h2 class="section-title">미사 시간 및 사무 안내</h2>
     </div>
-
-    <div class="info-card fade-in">
-      <div class="card-header">
-        <span class="card-header-icon">🏢</span>
-        <span class="card-header-title">사무장 근무 시간</span>
+    <div class="info-grid">
+      <div class="info-card fade-in">
+        <div class="card-head">
+          <span class="card-head-icon">⛪</span>
+          <span class="card-head-title">미사 시간 안내</span>
+        </div>
+        <div class="card-body">
+          <table class="sch">
+            <tr><td class="day">월요일</td><td class="time">오전 6시</td></tr>
+            <tr><td class="day">화, 목</td><td class="time">오후 7시 30분</td></tr>
+            <tr><td class="day">수, 금</td><td class="time">오전 10시</td></tr>
+            <tr><td class="day">토요일</td><td class="time">오후 5시 30분 <span class="badge">가정</span></td></tr>
+            <tr>
+              <td class="day">주일</td>
+              <td>
+                <div class="time">오전 8시 30분</div>
+                <div class="highlight" style="margin-top:4px;">오전 10시 30분 <span class="badge">교중</span></div>
+                <div class="time" style="margin-top:4px;">오후 7시 30분 <span class="badge">청년</span></div>
+              </td>
+            </tr>
+            <tr style="background:#f8f6f2;"><td class="day" style="color:var(--gold);">고해성사</td><td class="time">미사 30분 전</td></tr>
+          </table>
+        </div>
       </div>
-      <div class="card-body">
-        <table class="schedule">
-          <tr>
-            <td class="day-label">월요일</td>
-            <td class="holiday-text">휴무</td>
-          </tr>
-          <tr>
-            <td class="day-label">화, 목</td>
-            <td class="time-label">오후 6시 30분 ~ 7시 30분</td>
-          </tr>
-          <tr>
-            <td class="day-label">수, 금</td>
-            <td class="time-label">오전 9시 ~ 12시</td>
-          </tr>
-          <tr>
-            <td class="day-label">토요일</td>
-            <td class="time-label">오후 4시 30분 ~ 5시 30분</td>
-          </tr>
-          <tr>
-            <td class="day-label">주일</td>
-            <td>
-              <div class="time-label">오전 7시 30분 ~ 12시</div>
-              <div class="time-label" style="margin-top:4px;">오후 6시 30분 ~ 미사 후 <span class="badge">청년미사</span></div>
-            </td>
-          </tr>
-          <tr style="background:#f8f6f2;">
-            <td class="day-label" style="color:#c9a84c;">전화</td>
-            <td class="time-label">(033) 743-3217</td>
-          </tr>
-        </table>
+      <div class="info-card fade-in">
+        <div class="card-head">
+          <span class="card-head-icon">🏢</span>
+          <span class="card-head-title">사무장 근무 시간</span>
+        </div>
+        <div class="card-body">
+          <table class="sch">
+            <tr><td class="day">월요일</td><td class="holiday">휴무</td></tr>
+            <tr><td class="day">화, 목</td><td class="time">오후 6시 30분 ~ 7시 30분</td></tr>
+            <tr><td class="day">수, 금</td><td class="time">오전 9시 ~ 12시</td></tr>
+            <tr><td class="day">토요일</td><td class="time">오후 4시 30분 ~ 5시 30분</td></tr>
+            <tr>
+              <td class="day">주일</td>
+              <td>
+                <div class="time">오전 7시 30분 ~ 12시</div>
+                <div class="time" style="margin-top:4px;">오후 6시 30분 ~ 미사 후 <span class="badge">청년</span></div>
+              </td>
+            </tr>
+            <tr style="background:#f8f6f2;"><td class="day" style="color:var(--gold);">전화</td><td class="time">(033) 743-3217</td></tr>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MENU SECTION -->
-<section class="menu-section" id="menu">
-  <div class="menu-inner">
+<!-- 등록 안내 -->
+<section class="section section-alt" id="register">
+  <div class="inner">
     <div class="section-header fade-in">
-      <div class="section-tag">Parish Guide</div>
+      <div class="section-tag">WELCOME</div>
+      <h2 class="section-title">오신 것을 환영합니다</h2>
+    </div>
+
+    <!-- 카드 선택 -->
+    <div id="reg-cards">
+      <div class="reg-grid fade-in">
+        <div class="reg-card" onclick="showReg('cat')">
+          <div class="reg-card-top cat">
+            <span class="reg-icon">🕊️</span>
+            <h3>예비 신자</h3>
+            <p>처음으로 하느님의 문을<br>두드리시는 분</p>
+          </div>
+          <div class="reg-card-bottom">
+            <span>자세히 보기</span>
+            <span class="reg-arrow">→</span>
+          </div>
+        </div>
+        <div class="reg-card" onclick="showReg('tra')">
+          <div class="reg-card-top tra">
+            <span class="reg-icon">🏠</span>
+            <h3>전입 교우</h3>
+            <p>새로운 보금자리에서<br>함께하실 신자분</p>
+          </div>
+          <div class="reg-card-bottom">
+            <span>자세히 보기</span>
+            <span class="reg-arrow">→</span>
+          </div>
+        </div>
+        <div class="reg-card" onclick="showReg('lap')">
+          <div class="reg-card-top lap">
+            <span class="reg-icon">🕯️</span>
+            <h3>냉담 교우</h3>
+            <p>오랫동안 마음속에<br>성당을 품고 계신 분</p>
+          </div>
+          <div class="reg-card-bottom">
+            <span>자세히 보기</span>
+            <span class="reg-arrow">→</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 예비신자 상세 -->
+    <div id="reg-cat" class="reg-detail">
+      <button class="back-btn" onclick="hideReg()">← 처음으로</button>
+      <div class="warm-box cat">
+        <h2>🕊️ 예비 신자 안내</h2>
+        <p>하느님께서 당신을 이곳으로 이끌어 주셨습니다.<br>
+        어떤 이유로 오셨든, 어떤 마음으로 오셨든 상관없습니다.<br>
+        그 작은 발걸음 하나가 이미 커다란 용기입니다.<br><br>
+        무실동 성당은 언제나 열려 있습니다.<br>
+        부담 없이 오셔서 편안하게 물어봐 주세요. 🙏</p>
+      </div>
+      <div class="priest-card">
+        <div class="priest-avatar">✝️</div>
+        <div class="priest-info">
+          <h3>주임신부 박정원 요한세례자 신부</h3>
+          <p>"어떤 이유로 오셨든 상관없습니다.<br>
+          그냥 궁금해서 오셔도 됩니다.<br>
+          성당 문은 언제나 열려 있습니다."<br><br>
+          <strong style="color:var(--navy); font-size:1.05rem;">☎ (033) 743-3217</strong></p>
+        </div>
+      </div>
+      <div class="msg-grid">
+        <div class="msg-card"><span class="msg-icon">📞</span><h3>전화 한 통이면 됩니다</h3><p>복잡한 절차 없습니다.<br>궁금한 것 있으면 그냥<br>전화 주세요!</p></div>
+        <div class="msg-card"><span class="msg-icon">🚶</span><h3>그냥 오셔도 됩니다</h3><p>미사 시간에 슬그머니<br>들어오셔도 됩니다.<br>아무도 뭐라 안 해요 😊</p></div>
+        <div class="msg-card"><span class="msg-icon">❓</span><h3>아무것도 몰라도 됩니다</h3><p>천주교가 뭔지 몰라도<br>일단 오시면 됩니다!</p></div>
+        <div class="msg-card"><span class="msg-icon">🤝</span><h3>신부님이 맞아주십니다</h3><p>박정원 요한세례자 신부님께서<br>편안하게 이야기<br>들어주실 겁니다.</p></div>
+      </div>
+      <div class="contact-row">
+        <div><div class="ci-label">전화 문의</div><div class="ci-value">(033) 743-3217</div></div>
+        <div><div class="ci-label">사무실 운영</div><div class="ci-value">수·금 09:00~12:00<br>주일 07:30~12:00</div></div>
+        <div><div class="ci-label">주소</div><div class="ci-value">강원도 원주시 무실로 457</div></div>
+      </div>
+    </div>
+
+    <!-- 전입교우 상세 -->
+    <div id="reg-tra" class="reg-detail">
+      <button class="back-btn" onclick="hideReg()">← 처음으로</button>
+      <div class="warm-box tra">
+        <h2>🏠 전입 교우 안내</h2>
+        <p>새로운 보금자리에서 무실동 성당과 함께하시게 된 것을 진심으로 환영합니다.<br>
+        교적 이전 절차를 안내해 드리겠습니다.</p>
+      </div>
+      <div class="steps-box">
+        <h3>📋 교적 이전 절차</h3>
+        <div class="step-row"><div class="step-badge">1</div><div><h4>전 본당에 교적 이전 신청</h4><p>이전 본당 사무실에 방문하여 세례증명서를 발급받으세요.</p></div></div>
+        <div class="step-row"><div class="step-badge">2</div><div><h4>무실동 성당 사무실 방문</h4><p>근무시간 내에 방문하시어 전입 신청서를 작성해 주세요.</p></div></div>
+        <div class="step-row"><div class="step-badge">3</div><div><h4>구비서류 제출</h4><p>세례증명서 1부, 신분증을 제출해 주세요.</p></div></div>
+        <div class="step-row"><div class="step-badge">4</div><div><h4>교적 등록 완료</h4><p>교적이 등록되면 무실동 성당 신자로 모든 활동에 참여하실 수 있습니다.</p></div></div>
+      </div>
+      <div class="contact-row">
+        <div><div class="ci-label">전화 문의</div><div class="ci-value">(033) 743-3217</div></div>
+        <div><div class="ci-label">사무실 운영</div><div class="ci-value">수·금 09:00~12:00<br>주일 07:30~12:00</div></div>
+        <div><div class="ci-label">주소</div><div class="ci-value">강원도 원주시 무실로 457</div></div>
+      </div>
+    </div>
+
+    <!-- 냉담교우 상세 -->
+    <div id="reg-lap" class="reg-detail">
+      <button class="back-btn" onclick="hideReg()">← 처음으로</button>
+      <div class="warm-box lap">
+        <h2>🕯️ 오랫동안 기다렸습니다</h2>
+        <div class="lap-verse">
+          "내가 세상 끝 날까지 언제나 너희와 함께 있겠다."<br>
+          <span style="font-size:0.82rem; color:rgba(255,255,255,0.6);">(마태 28, 20)</span>
+        </div>
+        <p>성당에 오래 나오지 못하셨나요?<br>
+        괜찮습니다. 예수님은 그 모든 시간 동안<br>
+        단 한 번도 당신 곁을 떠나신 적이 없습니다.<br><br>
+        오시든 오시지 않으시든,<br>
+        주님은 언제나 당신과 함께 계십니다. 🙏</p>
+      </div>
+      <div class="msg-grid">
+        <div class="msg-card"><span class="msg-icon">💛</span><h3>판단하지 않습니다</h3><p>어떤 이유로 멀어지셨든<br>묻지 않겠습니다.<br>오신 것만으로 충분합니다.</p></div>
+        <div class="msg-card"><span class="msg-icon">🤝</span><h3>언제든 환영합니다</h3><p>주일 미사에 슬그머니<br>들어오셔도 됩니다.<br>성당 문은 항상 열려 있습니다.</p></div>
+        <div class="msg-card"><span class="msg-icon">🕊️</span><h3>신부님과 상담하세요</h3><p>마음의 짐이 있으시다면<br>주임신부님께서<br>따뜻하게 맞아주실 겁니다.</p></div>
+        <div class="msg-card"><span class="msg-icon">🙏</span><h3>기도로 함께합니다</h3><p>오시지 못하는 날에도<br>무실동 성당은 당신을 위해<br>기도하고 있습니다.</p></div>
+      </div>
+      <div class="contact-row">
+        <div><div class="ci-label">언제든 전화하세요</div><div class="ci-value">(033) 743-3217</div></div>
+        <div><div class="ci-label">미사 시간</div><div class="ci-value">주일 08:30 / 10:30 / 19:30<br>토 17:30</div></div>
+        <div><div class="ci-label">주소</div><div class="ci-value">강원도 원주시 무실로 457</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 본당 안내 -->
+<section class="section" id="parish">
+  <div class="inner">
+    <div class="section-header fade-in">
+      <div class="section-tag">PARISH GUIDE</div>
       <h2 class="section-title">본당 안내</h2>
     </div>
-
-    <div class="menu-grid">
-      <a href="#" class="menu-card fade-in">
-        <span class="menu-icon">📋</span>
-        <div class="menu-name">공지사항 / 주보</div>
-        <div class="menu-desc">본당 공지 및 주간 주보</div>
+    <div class="parish-grid fade-in">
+      <a href="#" class="parish-card">
+        <span class="parish-icon">📋</span>
+        <div class="parish-name">공지사항 / 주보</div>
+        <div class="parish-desc">본당 공지 및 주간 주보</div>
       </a>
-      <a href="#" class="menu-card fade-in">
-        <span class="menu-icon">🙏</span>
-        <div class="menu-name">전례부</div>
-        <div class="menu-desc">전례 안내 및 공지</div>
+      <a href="#" class="parish-card">
+        <span class="parish-icon">🙏</span>
+        <div class="parish-name">전례부</div>
+        <div class="parish-desc">전례 안내 및 공지</div>
       </a>
-      <a href="#" class="menu-card fade-in">
-        <span class="menu-icon">✝️</span>
-        <div class="menu-name">사도회</div>
-        <div class="menu-desc">사도회 활동 안내</div>
+      <a href="#" class="parish-card">
+        <span class="parish-icon">✝️</span>
+        <div class="parish-name">사도회</div>
+        <div class="parish-desc">사도회 활동 안내</div>
       </a>
-      <a href="#" class="menu-card fade-in">
-        <span class="menu-icon">🌹</span>
-        <div class="menu-name">성모회</div>
-        <div class="menu-desc">성모회 및 물품 안내</div>
+      <a href="#" class="parish-card">
+        <span class="parish-icon">🌹</span>
+        <div class="parish-name">성모회</div>
+        <div class="parish-desc">성모회 및 물품 안내</div>
       </a>
-      <a href="#" class="menu-card fade-in">
-        <span class="menu-icon">🎵</span>
-        <div class="menu-name">성가대</div>
-        <div class="menu-desc">단원 모집 · 수요일 20시</div>
+      <a href="#" class="parish-card">
+        <span class="parish-icon">🎵</span>
+        <div class="parish-name">성가대</div>
+        <div class="parish-desc">단원 모집 · 수요일 20시</div>
       </a>
-      <a href="https://cafe.daum.net/mp.ms" target="_blank" class="menu-card fade-in">
-        <span class="menu-icon">📸</span>
-        <div class="menu-name">사진 / 동영상</div>
-        <div class="menu-desc">다음 카페에서 보기</div>
+      <a href="https://cafe.daum.net/mp.ms" target="_blank" class="parish-card">
+        <span class="parish-icon">📸</span>
+        <div class="parish-name">사진 / 동영상</div>
+        <div class="parish-desc">다음 카페에서 보기</div>
       </a>
     </div>
   </div>
 </section>
 
-<!-- CONTACT SECTION -->
+<!-- 오시는 길 -->
 <section class="contact-section" id="contact">
   <div class="contact-inner">
-    <div class="contact-info fade-in">
+    <div class="fade-in">
       <h2>오시는 길</h2>
-      <div class="contact-item">
-        <span class="contact-icon">📍</span>
-        <div class="contact-text">
-          <strong>주소</strong>
-          강원도 원주시 무실로 457 (무실동)<br>우편번호 26393
-        </div>
-      </div>
-      <div class="contact-item">
-        <span class="contact-icon">📞</span>
-        <div class="contact-text">
-          <strong>대표전화</strong>
-          (033) 743-3217
-        </div>
-      </div>
-      <div class="contact-item">
-        <span class="contact-icon">📠</span>
-        <div class="contact-text">
-          <strong>팩스</strong>
-          (033) 744-3216
-        </div>
-      </div>
-      <div class="contact-item">
-        <span class="contact-icon">✝️</span>
-        <div class="contact-text">
-          <strong>주임신부</strong>
-          박정원 요한세례자 신부
-        </div>
-      </div>
-      <div class="contact-item">
-        <span class="contact-icon">📅</span>
-        <div class="contact-text">
-          <strong>설립일</strong>
-          2014년 9월 19일 · 신자수 2,483명
-        </div>
-      </div>
+      <div class="ci"><span class="ci-icon">📍</span><div class="ci-text"><strong>주소</strong>강원도 원주시 무실로 457 (무실동)<br>우편번호 26393</div></div>
+      <div class="ci"><span class="ci-icon">📞</span><div class="ci-text"><strong>대표전화</strong>(033) 743-3217</div></div>
+      <div class="ci"><span class="ci-icon">📠</span><div class="ci-text"><strong>팩스</strong>(033) 744-3216</div></div>
+      <div class="ci"><span class="ci-icon">✝️</span><div class="ci-text"><strong>주임신부</strong>박정원 요한세례자 신부</div></div>
+      <div class="ci"><span class="ci-icon">📅</span><div class="ci-text"><strong>설립일</strong>2014년 9월 19일 · 신자수 2,483명</div></div>
     </div>
-
-    <div class="map-container fade-in">
-      <iframe
-        src="https://maps.google.com/maps?q=강원도+원주시+무실로+457&output=embed&z=16"
-        allowfullscreen>
-      </iframe>
+    <div class="map-wrap fade-in">
+      <iframe src="https://maps.google.com/maps?q=강원도+원주시+무실로+457&output=embed&z=16" allowfullscreen></iframe>
     </div>
   </div>
 </section>
 
-<!-- CAFE BUTTON -->
+<!-- 카페 -->
 <section class="cafe-section">
   <div class="section-header fade-in" style="margin-bottom:2rem;">
-    <div class="section-tag">Community</div>
+    <div class="section-tag">COMMUNITY</div>
     <h2 class="section-title" style="color:var(--navy);">본당 커뮤니티</h2>
     <p style="color:var(--gray);margin-top:0.8rem;font-size:0.9rem;">행사 사진, 동영상, 단체 소식을 다음 카페에서 만나보세요</p>
   </div>
-  <a href="https://cafe.daum.net/mp.ms" target="_blank" class="cafe-btn">
-    ☕ 무실동 성당 다음 카페 바로가기
-  </a>
+  <a href="https://cafe.daum.net/mp.ms" target="_blank" class="cafe-btn-link">☕ 무실동 성당 다음 카페 바로가기</a>
 </section>
 
 <!-- FOOTER -->
@@ -870,60 +620,43 @@ footer strong { color: var(--gold-light); }
 </footer>
 
 <script>
-// Slider
 let current = 0;
 const total = 3;
 let autoPlay;
 
 function updateSlider() {
-  document.getElementById('slides').style.transform = `translateX(-${current * 100}%)`;
-  document.querySelectorAll('.dot').forEach((d, i) => {
-    d.classList.toggle('active', i === current);
-  });
+  document.getElementById('slides').style.transform = `translateX(-${current*100}%)`;
+  document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i===current));
 }
 
-function changeSlide(dir) {
-  current = (current + dir + total) % total;
-  updateSlider();
-  resetAutoPlay();
+function changeSlide(dir) { current=(current+dir+total)%total; updateSlider(); resetAuto(); }
+function goSlide(n) { current=n; updateSlider(); resetAuto(); }
+function resetAuto() { clearInterval(autoPlay); autoPlay=setInterval(()=>changeSlide(1),5000); }
+autoPlay = setInterval(()=>changeSlide(1),5000);
+
+function toggleMenu() { document.getElementById('navMenu').classList.toggle('open'); }
+
+function showReg(type) {
+  document.getElementById('reg-cards').style.display = 'none';
+  document.querySelectorAll('.reg-detail').forEach(d => d.classList.remove('active'));
+  document.getElementById('reg-' + type).classList.add('active');
+  document.getElementById('register').scrollIntoView({behavior:'smooth'});
 }
 
-function goSlide(n) {
-  current = n;
-  updateSlider();
-  resetAutoPlay();
+function hideReg() {
+  document.getElementById('reg-cards').style.display = 'block';
+  document.querySelectorAll('.reg-detail').forEach(d => d.classList.remove('active'));
+  document.getElementById('register').scrollIntoView({behavior:'smooth'});
 }
 
-function resetAutoPlay() {
-  clearInterval(autoPlay);
-  autoPlay = setInterval(() => changeSlide(1), 5000);
-}
-
-autoPlay = setInterval(() => changeSlide(1), 5000);
-
-// Hamburger
-function toggleMenu() {
-  document.getElementById('navMenu').classList.toggle('open');
-}
-
-// Scroll animations
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) e.target.classList.add('visible');
-  });
-}, { threshold: 0.15 });
-
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-// Nav scroll effect
 window.addEventListener('scroll', () => {
-  const nav = document.getElementById('navbar');
-  if (window.scrollY > 50) {
-    nav.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
-  } else {
-    nav.style.boxShadow = 'none';
-  }
+  document.getElementById('navbar').style.boxShadow = window.scrollY > 50 ? '0 4px 20px rgba(0,0,0,0.3)' : 'none';
 });
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.12});
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
